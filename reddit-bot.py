@@ -19,18 +19,14 @@ reddit = praw.Reddit(
 def print_content():
     
     posts = []
-
     subreddit_name = input("Input a subreddit name: ")
-
     subreddit_naming = reddit.subreddit(subreddit_name)
-
+    
     for post in subreddit_naming.hot(limit=10):
         posts.append([post.title, post.score, post.url, post.selftext])
     
     posts = pd.DataFrame(posts,columns=['title', 'score','url', 'body'])
-    
     posts.to_csv(r'/Users/sachinprabhuram/Desktop/news.csv', index = False)
-    
     print(posts)
         
 print_content()
